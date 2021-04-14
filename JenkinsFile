@@ -25,7 +25,7 @@ pipeline{
 		sh 'ant -Dj2ee.server.home=http://localhost:8080 -Dlibs.CopyLibs.classpath=/home/sam/jenkins/nblibrary/org-netbeans-modules-java-j2seproject-copylibstask.jar clean compile'
             }
 	}
-	stage('Github Ant Simple Apps War) {
+	stage('Github Ant Simple Apps War') {
             steps {
 		sh 'ant -Dj2ee.server.home=http://localhost:8080 -Dlibs.CopyLibs.classpath=/home/sam/jenkins/nblibrary/org-netbeans-modules-java-j2seproject-copylibstask.jar dist'
             }
