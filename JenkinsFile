@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    stages {
+        stage('Add Ant Path') {
+            steps {
+                script{
+                    env.PATH = "${env.PATH}:/var/lib/jenkins/tools/hudson.tasks.Ant_AntInstallation/ant1.10.9/bin"
+                }
+                
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} - path: ${env.PATH}"
+            }
+        }
+        stage('Check git and ant') {
+            steps {
+                sh 'git --version'
+                sh 'ant -version'
+            }
+        }
+    }
+}
