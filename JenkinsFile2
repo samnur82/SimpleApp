@@ -1,0 +1,12 @@
+pipeline{
+    agent any
+    stages {
+        stage('Check git and ant') {
+            steps {
+                sh 'git --version'
+                sh 'ant -version'
+            }
+        }
+		
+    }
+}
