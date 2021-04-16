@@ -6,7 +6,11 @@ pipeline{
                 sh 'git --version'
                 sh 'ant -version'
             }
-        }
-		
+        }	
     }
+    stage('Builds Ant Simple Apps') {
+            steps {
+		git 'https://github.com/samnur82/SimpleApp.git'
+		sh 'ant -Dj2ee.server.home=http://localhost:8080 -Dlibs.CopyLibs.classpath=/home/sam/jenkins/nblibrary/org-netbeans-modules-java-j2seproject-copylibstask.jar clean compile'
+            }
 }
