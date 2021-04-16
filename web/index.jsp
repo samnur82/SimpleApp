@@ -14,15 +14,15 @@
     </head>
     <body>
         <h1>Simple Calculator</h1>
-        <form>
+        <form action="${pageContext.request.contextPath}/MathOperation.java" method="post">
             <table>
                 <tr>
                     <td><label for="fnum">First number</label></td>
-                    <td><input type="text" id="fnum" name="fnum"></td>
+                    <td><input type="text" id="num1" name="num1"></td>
                 </tr>
                 <tr>
                     <td><label for="lnum">Second number</label></td>
-                    <td><input type="text" id="lnum" name="lnum"></td>    
+                    <td><input type="text" id="num2" name="num2"></td>    
                 </tr>
                 <tr>
                     <td>math operation </td>
