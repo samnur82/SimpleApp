@@ -1,17 +1,24 @@
 pipeline{
     agent any
     stages {
-        stage('Check git and ant') {
+        stage('Checkout SCM') {
+            steps{
+               checkout scm
+            }
+        }
+        stage('Check git, Ant and Java version') {
             steps {
                 sh 'git --version'
                 sh 'ant -version'
+                sh 'java --version'
             }
         }
-        stage('Builds Ant Simple Apps') {
+        stage('Clean, Compile and Build Simple Apps') {
             steps {
-		git 'https://github.com/samnur82/SimpleApp.git'
-		sh 'ant -Dj2ee.server.home=http://localhost:8080 -Dlibs.CopyLibs.classpath=/home/sam/jenkins/nblibrary/org-netbeans-modules-java-j2seproject-copylibstask.jar clean compile'
+	        git 'https://github.com/samnur82/SimpleApp.git'
+	        sh 'ant -Dj2ee.server.home=/opt/tomcat9 -Dlibs.CopyLibs.classpath=/root/nblibrary clean compile'
+                sh 'ant -Dj2ee.server.home=/opt/tomcat9 -Dlibs.CopyLibs.classpath=/root/nblibrary dist'
             }
-        }
+        }		
     }
 }
