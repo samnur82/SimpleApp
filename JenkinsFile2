@@ -10,7 +10,7 @@ pipeline{
             steps {
                 sh 'git --version'
                 sh 'ant -version'
-                sh 'java --version'
+                sh 'java -version'
             }
         }
         stage('Clean, Compile and Build Simple Apps') {
