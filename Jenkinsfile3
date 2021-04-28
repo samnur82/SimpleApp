@@ -21,7 +21,8 @@ pipeline {
         }
         stage('test image'){
             steps{
-		sh 'docker images ls -a'
+		sh 'docker image ls -a'
+                sh 'pwd | java -version'
             }
 	}
 	stage('push image'){
@@ -29,6 +30,8 @@ pipeline {
 		script {
                     docker.withRegistry( '', registryCred ) {
 			dockerImage.push()
+
+                        dockerImage.push('latest')
                     }
 		}	
 	    }
