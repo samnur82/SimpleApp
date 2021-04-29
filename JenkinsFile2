@@ -15,7 +15,6 @@ pipeline{
         }
         stage('clone repo') {
             steps {
-                sh 'git checkout docker-dockerfiletest' 
                 sh 'git pull'
             }
         }
