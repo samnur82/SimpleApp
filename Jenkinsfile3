@@ -10,7 +10,7 @@ pipeline {
         stage('clone repo') {
             steps {
                 sh 'git checkout docker-dockerfiletest' 
-                sh 'git pull https://github.com/samnur82/SimpleApp.git'
+                sh 'git pull'
             }
         }
         stage('build Image') {
