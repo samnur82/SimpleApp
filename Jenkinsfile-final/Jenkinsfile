@@ -16,6 +16,7 @@ pipeline{
         stage('clone repo') {
             steps {
                 sh 'git checkout docker-dockerfiletest' 
+                sh 'git pull'
             }
         }
         stage('Build Simple Apps War') {
@@ -31,5 +32,21 @@ pipeline{
 		}
             }
         }
+        stage('Test Docker Image'){
+            steps{
+		sh 'docker image ls -a'
+            }
+	}
+        stage('Push Image to Docker Hub'){
+            steps{
+		script {
+                    docker.withRegistry( '', registryCred ) {
+			dockerImage.push()
+
+                        dockerImage.push('latest')
+                    }
+		}	
+	    }
+	}
     }
 }
