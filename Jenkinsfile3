@@ -13,6 +13,14 @@ pipeline {
                 sh 'git pull'
             }
         }
+
+        stage('Build Simple Apps War') {
+            steps{
+	        sh 'ant -Dj2ee.server.home=/opt/tomcat9 -Dlibs.CopyLibs.classpath=/root/nblibrary clean compile'
+                sh 'ant -Dj2ee.server.home=/opt/tomcat9 -Dlibs.CopyLibs.classpath=/root/nblibrary dist'
+            }
+        }
+
         stage('build Image') {
             steps {
 		script {
