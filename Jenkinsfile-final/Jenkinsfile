@@ -1,5 +1,12 @@
 pipeline{
+    environment {
+		registry = 'samnur82/simpleapp'
+		registryCred = 'my_dockerhub'
+		dockerImage = ''
+    }
+
     agent any
+
     stages {
         stage('Check Prerequisite') {
             steps {
@@ -16,6 +23,13 @@ pipeline{
 	        sh 'ant -Dj2ee.server.home=/opt/tomcat9 -Dlibs.CopyLibs.classpath=/root/nblibrary clean compile'
                 sh 'ant -Dj2ee.server.home=/opt/tomcat9 -Dlibs.CopyLibs.classpath=/root/nblibrary dist'
             }
-        }		
+        }	
+        stage('Build Simple Apps Docker Images') {
+            steps{
+	 	script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+		}
+            }
+        }
     }
 }
