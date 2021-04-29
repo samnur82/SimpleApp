@@ -15,8 +15,7 @@ pipeline{
         }
         stage('clone repo') {
             steps {
-                sh 'git checkout docker-dockerfiletest' 
-                sh 'git pull'
+               sh 'git pull https://github.com/samnur82/SimpleApp.git docker-dockerfiletest'
             }
         }
         stage('Build Simple Apps War') {
